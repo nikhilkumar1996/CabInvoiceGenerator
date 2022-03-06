@@ -6,7 +6,6 @@ namespace TestProject1
     [TestClass]
     public class UnitTest1
     {
-        /// <summary>
         /// UC1-Return the total fare for normal ride
         [TestMethod]
         [TestCategory("CalculatingFare")]
@@ -22,7 +21,6 @@ namespace TestProject1
             Assert.AreEqual(expected, fare);
 
         }
-        /// <summary>
         /// UC5-Return the total fare for premium ride
         [TestMethod]
         [TestCategory("CalculatingFare")]
@@ -38,6 +36,39 @@ namespace TestProject1
             Assert.AreEqual(expected, fare);
 
         }
-       
+        /// UC2-Returns the totlfare for multiple rides
+        [TestMethod]
+        public void Return_Multiple_Rides_TotalFare()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.PREMIUM_RIDE);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+            InvoiceSummary summary = new InvoiceSummary(2, 55.0);
+            InvoiceSummary expected = invoice.CalculateFare(rides);
+            Assert.AreEqual(summary.totalFare, expected.totalFare);
+        }
+        /// UC3-Returns the average ride
+        [TestMethod]
+        public void Return_Multiple_Rides_AverageFare()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.PREMIUM_RIDE);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+            InvoiceSummary summary = new InvoiceSummary(2, 55.0);
+            InvoiceSummary expected = invoice.CalculateFare(rides);
+            Assert.AreEqual(summary.avgFare, expected.avgFare);
+        }
+        /// UC3-returns the number of rides
+        [TestMethod]
+        public void Return_Multiple_Rides_NumofRides()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.PREMIUM_RIDE);
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+
+            InvoiceSummary summary = new InvoiceSummary(2, 55.0);
+            InvoiceSummary expected = invoice.CalculateFare(rides);
+            Assert.AreEqual(summary.numOfRides, expected.numOfRides);
+        }
+
     }
 }
